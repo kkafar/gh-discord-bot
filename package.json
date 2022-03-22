@@ -11,7 +11,7 @@
   "author": "Kacper Kafara",
   "license": "ISC",
   "dependencies": {
-    "discord.io": "github:Woor/discord.io#gateway_v6",
+    "discord.js": "^13.6.0",
     "winston": "^3.6.0"
   }
 }
