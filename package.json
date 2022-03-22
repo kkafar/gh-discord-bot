@@ -2,10 +2,16 @@
   "name": "gh-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "bot.js",
+  "main": "src/bot.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/bot.js"
   },
   "author": "Kacper Kafara",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "discord.io": "github:Woor/discord.io#gateway_v6",
+    "winston": "^3.6.0"
+  }
 }
