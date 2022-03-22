@@ -81,7 +81,7 @@ setInterval(async () => {
 	} else {
 		logger.warn("Null data returned from github manager")
 	}
-}, 1000 * 10) // every 12h
+}, 1000 * 60 * 60 * 12) // every 12h
 
 
 discordBot.on('message', function(user, userID, channelID, message, event) {
