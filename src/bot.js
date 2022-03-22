@@ -3,6 +3,9 @@ import Discord from 'discord.io'
 import axios from 'axios'
 import GithubManager from './ghmanager.js'
 import logger from 'winston'
+import express from 'express'
+
+const server = express()
 
 logger.add(new logger.transports.Console)
 
@@ -78,8 +81,7 @@ setInterval(async () => {
 	} else {
 		logger.warn("Null data returned from github manager")
 	}
-}, 5000)
-
+}, 1000 * 60 * 60 * 12) // every 12h
 
 
 discordBot.on('message', function(user, userID, channelID, message, event) {
@@ -87,3 +89,14 @@ discordBot.on('message', function(user, userID, channelID, message, event) {
 	logger.info("ChannelID: " + channelID)
 }) 
 
+const serverConfig = {
+	port: process.env.PORT
+}
+
+server.get('/', (req, res) => {
+	res.send("Bot")
+})
+
+server.listen(serverConfig.port, async () => {
+	logger.info("Express server started")
+});
