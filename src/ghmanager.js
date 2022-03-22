@@ -24,7 +24,7 @@ export default class GithubManager {
 			return pr.state == 'open' && pr.locked == false
 		}).map(pr => {
 			return {
-				url: pr.url,
+				url: pr.html_url,
 				number: pr.number,
 				title: pr.title,
 				user: pr.user.login,
