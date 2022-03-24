@@ -1,9 +1,7 @@
-// import { Channel, Client, Intents, TextChannel } from 'discord.js'
 import Discord from 'discord.io'
-import axios from 'axios'
 import GithubManager from './ghmanager.js'
 import logger from 'winston'
-import express from 'express'
+// import express from 'express'
 
 const server = express()
 
@@ -119,14 +117,14 @@ discordBot.on('message', function(user, userID, channelID, message, event) {
 	}
 }) 
 
-const serverConfig = {
-	port: process.env.PORT
-}
+// const serverConfig = {
+// 	port: process.env.PORT
+// }
 
-server.get('/', (req, res) => {
-	res.send("Bot")
-})
+// server.get('/', (req, res) => {
+// 	res.send("Bot")
+// })
 
-server.listen(serverConfig.port, async () => {
-	logger.info("Express server started")
-});
+// server.listen(serverConfig.port, async () => {
+// 	logger.info("Express server started")
+// });
