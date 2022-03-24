@@ -62,6 +62,24 @@ discordBot.on('ready', function() {
 
 const githubManager = new GithubManager()
 
+async function handleUpdate(channelID) {
+	const channel = channelID || discordServerInfo.channelId
+	const data = await githubManager.updateData()
+	if (data != null)	{
+		const mess = parseDataToMessage(data)
+		if (mess) {
+			discordBot.sendMessage({
+				to: channel,
+				message: 'These PRs require your attention:\n' + mess
+			})
+		} else {
+			logger.error("Null message returned from parser")
+		}
+	} else {
+		logger.warn("Null data returned from github manager")
+	}
+}
+
 setInterval(async () => {
 	const data = await githubManager.updateData()
 	if (data != null) {
@@ -94,20 +112,7 @@ discordBot.on('message', function(user, userID, channelID, message, event) {
 		logger.info("Recognized command: " + command)
 
 		if (command == "repoupdate") {
-			const data = await githubManager.updateData()
-			if (data != null)	{
-				const mess = parseDataToMessage(data)
-				if (mess) {
-					discordBot.sendMessage({
-						to: discordServerInfo.channelId,
-						message: 'These PRs require your attention:\n' + mess
-					})
-				} else {
-					logger.error("Null message returned from parser")
-				}
-			} else {
-				logger.warn("Null data returned from github manager")
-			}
+			handleUpdate(channelID)
 		} else {
 			logger.info("Unrecognized command")
 		}
