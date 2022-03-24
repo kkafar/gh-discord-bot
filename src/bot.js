@@ -3,7 +3,7 @@ import GithubManager from './ghmanager.js'
 import logger from 'winston'
 // import express from 'express'
 
-const server = express()
+// const server = express()
 
 logger.add(new logger.transports.Console)
 
