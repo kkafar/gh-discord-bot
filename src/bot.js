@@ -87,6 +87,31 @@ setInterval(async () => {
 discordBot.on('message', function(user, userID, channelID, message, event) {
 	logger.info("Notified on message: " + message)
 	logger.info("ChannelID: " + channelID)
+
+	if (message.startsWith("!")) {
+		const command = message.substring(1, message.length)
+
+		logger.info("Recognized command: " + command)
+
+		if (command == "repoupdate") {
+			const data = await githubManager.updateData()
+			if (data != null)	{
+				const mess = parseDataToMessage(data)
+				if (mess) {
+					discordBot.sendMessage({
+						to: discordServerInfo.channelId,
+						message: 'These PRs require your attention:\n' + mess
+					})
+				} else {
+					logger.error("Null message returned from parser")
+				}
+			} else {
+				logger.warn("Null data returned from github manager")
+			}
+		} else {
+			logger.info("Unrecognized command")
+		}
+	}
 }) 
 
 const serverConfig = {
