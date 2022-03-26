@@ -7,6 +7,7 @@ class DiscordBot {
 	bot: Discord.Client
 	githubDataProvider: GithubDataProvider
 	timeInterval: number
+	defaultChannelId?: string
 
 	constructor(githubDataProvider: GithubDataProvider, timeInterval?: number) {
 		this.timeInterval = timeInterval || 1000 * 60 * 60 * 12 // 12h default
@@ -40,7 +41,7 @@ class DiscordBot {
 			const mess = this._parseDataToMessage(data)
 			if (mess) {
 				this.bot.sendMessage({
-					to: channelId || discordServerInfo.channelId,
+					to: channelId || this.defaultChannelId || discordServerInfo.channelId,
 					message: 'These PRs require your attention:\n' + mess
 				})
 			} else {
@@ -66,6 +67,12 @@ class DiscordBot {
 
 				if (command == "repoupdate") {
 					logger.info("Recognized command: " + command)
+					/**
+					 * This causes the bot to work only with one single channel
+					 * 
+					 * todo: @kkafar: figure out better solution
+					 */
+					this.defaultChannelId = channelID
 					this._fetchDataAndNotifyAsync(channelID)	
 				} else {
 					logger.info("Unrecognized command")
