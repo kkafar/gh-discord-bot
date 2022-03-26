@@ -1,7 +1,7 @@
 import Discord from 'discord.io'
 import GithubManager from './ghmanager.js'
 import logger from 'winston'
-import authInfo from './authinfo.js'
+import authInfo from './authinfo'
 
 logger.add(new logger.transports.Console)
 
