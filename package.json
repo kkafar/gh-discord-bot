@@ -2,13 +2,13 @@
   "name": "gh-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "src/bot.js",
-  "type": "module",
+  "main": "build/bot.js",
+  "type": "commonjs",
   "scripts": {
 		"prebuild": "rm -fr build/*",
 		"build": "tsc",
 		"prestart": "npm run build",
-    "start": "node src/bot.js",
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kacper Kafara",
