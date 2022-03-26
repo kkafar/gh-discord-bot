@@ -66,7 +66,7 @@ class DiscordBot {
 
 				if (command == "repoupdate") {
 					logger.info("Recognized command: " + command)
-					this._fetchDataAndNotifyAsync()	
+					this._fetchDataAndNotifyAsync(channelID)	
 				} else {
 					logger.info("Unrecognized command")
 				}
