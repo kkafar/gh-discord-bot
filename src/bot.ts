@@ -52,8 +52,9 @@ class DiscordBot {
 	}
 
 	start() {
-		this.bot.on('ready', function() {
+		this.bot.on('ready', () => {
 			logger.info('Bot is ready')
+			this._fetchDataAndNotifyAsync()
 		})
 
 		this.bot.on('message', (user, userID, channelID, message, event) => {
@@ -71,8 +72,6 @@ class DiscordBot {
 				}
 			}
 		}) 
-
-		this._fetchDataAndNotifyAsync()
 		
 		setInterval(async () => {
 			this._fetchDataAndNotifyAsync()
