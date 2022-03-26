@@ -18,9 +18,9 @@ export default class GithubManager {
 		this.data = []
 	}
 
-	async updateData() {
+	async updateDataAsync() {
 		logger.info("Updating gh data")
-		const response = await this.fetchData()
+		const response = await this.fetchDataAsync()
 		this.data = response.data.filter(pr => {
 			return pr.state == 'open' && pr.locked == false
 		}).map(pr => {
@@ -34,7 +34,7 @@ export default class GithubManager {
 		return this.data
 	}
 
-	async fetchData() {
+	async fetchDataAsync() {
 		return axios.get(this.githubEndpoints.rpgio.pulls, this.config)
 	}
 
