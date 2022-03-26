@@ -1,5 +1,8 @@
 # env specific
+#
 .envrc
 
 # node
+#
 node_modules/
+build/
