@@ -1,9 +1,6 @@
 import Discord from 'discord.io'
 import GithubManager from './ghmanager.js'
 import logger from 'winston'
-// import express from 'express'
-
-// const server = express()
 
 logger.add(new logger.transports.Console)
 
@@ -15,24 +12,12 @@ function parseDataToMessage(data) {
 		logger.error("Invalid data format (array check)")
 		return null
 	}
+
 	console.log(data)
-	// const message = data.map(pr => {
-	// 	return `[#${pr.number}: ${pr.title}](${pr.url}) by @${pr.user}`
-	// })
 
 	const message = data.map(pr => {
 		return `#${pr.number} ${pr.title} by @${pr.user} --> ${pr.url}`
 	}).join('\n')
-
-	// const message = data.map(pr => {
-	// 	return {
-	// 		name: `#${pr.number} ${pr.title} -- by @${pr.user}`,
-	// 		value: `${pr.url}`,
-	// 		inline: false
-	// 	}
-	// })
-
-	// console.log(message)
 	return message
 }
 
