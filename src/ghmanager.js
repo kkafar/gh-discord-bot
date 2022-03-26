@@ -1,9 +1,10 @@
 import axios from "axios"
 import logger from 'winston'
+import authInfo from './authinfo.js'
 
 export default class GithubManager {
 	constructor() {
-		this.token = process.env.BOT_GITHUB_TOKEN
+		this.token = authInfo.githubToken
 		this.githubEndpoints = {
 			rpgio: {
 				pulls: 'https://api.github.com/repos/RPG-IO/rpg-io/pulls'
