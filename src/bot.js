@@ -26,14 +26,10 @@ const discordServerInfo = {
 	channelId: process.env.BOT_TEST_CHANNEL_ID
 }
 
-console.log("Discord server info from env")
-console.log(discordServerInfo.channelId);
-
 const discordBot = new Discord.Client({
 	token: authInfo.discordToken,
 	autorun: true
 })
-
 
 discordBot.on('ready', function() {
 	logger.info('Bot is ready')
@@ -41,9 +37,9 @@ discordBot.on('ready', function() {
 
 const githubManager = new GithubManager()
 
-async function handleUpdate(channelID) {
+async function handleUpdateAsync(channelID) {
 	const channel = channelID || discordServerInfo.channelId
-	const data = await githubManager.updateData()
+	const data = await githubManager.updateDataAsync()
 	if (data != null)	{
 		const mess = parseDataToMessage(data)
 		if (mess) {
@@ -60,7 +56,7 @@ async function handleUpdate(channelID) {
 }
 
 setInterval(async () => {
-	const data = await githubManager.updateData()
+	const data = await githubManager.updateDataAsync()
 	if (data != null) {
 		const mess = parseDataToMessage(data)
 		if (mess) {
