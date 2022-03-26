@@ -1,6 +1,7 @@
 import Discord from 'discord.io'
 import GithubManager from './ghmanager.js'
 import logger from 'winston'
+import authInfo from './authinfo.js'
 
 logger.add(new logger.transports.Console)
 
@@ -19,11 +20,6 @@ function parseDataToMessage(data) {
 		return `#${pr.number} ${pr.title} by @${pr.user} --> ${pr.url}`
 	}).join('\n')
 	return message
-}
-
-const authInfo = {
-	discordToken: process.env.BOT_DISCORD_TOKEN,
-	githubToken: process.env.BOT_GITHUB_TOKEN
 }
 
 const discordServerInfo = {
