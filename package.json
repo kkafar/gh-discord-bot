@@ -5,8 +5,11 @@
   "main": "src/bot.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/bot.js"
+		"prebuild": "rm -fr build/*",
+		"build": "tsc",
+		"prestart": "npm run build",
+    "start": "node src/bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Kacper Kafara",
   "license": "ISC",
