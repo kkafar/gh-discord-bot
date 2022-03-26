@@ -67,10 +67,6 @@ setInterval(async () => {
 			discordBot.sendMessage({
 				to: discordServerInfo.channelId,
 				message: 'These PRs require your attention:\n' + mess
-				// embed: {
-				// 	title: "These PRs require your attention",
-				// 	fields: mess
-				// }
 			})
 		} else {
 			logger.error("Null message returned from parser")
@@ -97,15 +93,3 @@ discordBot.on('message', function(user, userID, channelID, message, event) {
 		}
 	}
 }) 
-
-// const serverConfig = {
-// 	port: process.env.PORT
-// }
-
-// server.get('/', (req, res) => {
-// 	res.send("Bot")
-// })
-
-// server.listen(serverConfig.port, async () => {
-// 	logger.info("Express server started")
-// });
