@@ -29,7 +29,7 @@ class DiscordBot {
 		console.log(data)
 
 		const message = data.map(pr => {
-			return `#${pr.number} ${pr.title} by @${pr.user} --> ${pr.url}`
+			return `#${pr.number} ${pr.title} by @${pr.user.login} --> ${pr.html_url}`
 		}).join('\n')
 		return message
 	}
